@@ -30,9 +30,14 @@ public class IosSimImageSeeder extends Server {
         desiredCapabilities.setCapability("platformName", "iOS");
         desiredCapabilities.setCapability("deviceName", "iPhone 8 Plus");
         desiredCapabilities.setCapability("app",appPath);
+        desiredCapabilities.setCapability("autoAcceptAlerts",true);
         appiumDriver = new AndroidDriver(new URL(getServerUrl()),desiredCapabilities);
     }
 
+
+    public static void main(String args[]){
+        System.out.println("hii");
+    }
     @AfterMethod
     public void tearDown(){
         startServer();
