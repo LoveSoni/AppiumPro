@@ -29,14 +29,12 @@ public class AndroidWeb extends Server {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "Android Emulator");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE,"");
-        capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY,"");
         capabilities.setCapability(MobileCapabilityType.UDID, "emulator-5554");
         capabilities.setCapability("automationName", "UiAutomator2");
         capabilities.setCapability(MobileCapabilityType.BROWSER_NAME,"chrome");
         capabilities.setCapability("autoAcceptAlerts", true);
         try {
-            appiumDriver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+            appiumDriver = new AndroidDriver(new URL(getServerUrl()),capabilities);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
