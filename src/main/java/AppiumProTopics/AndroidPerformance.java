@@ -40,7 +40,17 @@ public class AndroidPerformance extends Server {
         System.out.println("Supported Perfomance Data Types - "+((AndroidDriver)driver).getSupportedPerformanceDataTypes());
         // 1. Memory info
         Map<String,String> data = getPerformanceData(packageName,"memoryinfo",10);
-        System.out.println(data.toString());
+        System.out.println("Memory Info- "+data.toString());
+        //2. Battery info
+        Map<String,String> batteryinfo = getPerformanceData(packageName,"batteryinfo",1);
+        System.out.println("Battery Info- "+batteryinfo.toString());
+        //3. Network info
+        Map<String,String> networkInfo = getPerformanceData(packageName,"networkinfo",1);
+        System.out.println("Network Info- "+networkInfo.toString());
+        //4. cpu info
+        Map<String,String> cpuInfo = getPerformanceData(packageName,"cpuinfo",20);
+        System.out.println("Cpu info- "+cpuInfo.toString());
+
     }
 
     public Map<String,String> getPerformanceData(String packageName,String perfomanceType,int time){
