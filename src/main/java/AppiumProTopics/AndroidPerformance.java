@@ -24,12 +24,13 @@ public class AndroidPerformance extends Server {
 
     @Test
     public void androidPerformance(){
+        String packageName = "com.google.android.apps.photos";
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "Android");
         capabilities.setCapability("deviceName", "Android Emulator");
         capabilities.setCapability(MobileCapabilityType.UDID,"emulator-5554");
         capabilities.setCapability("automationName", "UiAutomator2");
-        capabilities.setCapability("appPackage", "com.google.android.apps.photos");
+        capabilities.setCapability("appPackage", packageName);
         capabilities.setCapability("appActivity", ".home.HomeActivity");
         try {
             driver = new AndroidDriver(new URL(getServerUrl()),capabilities);
@@ -38,23 +39,19 @@ public class AndroidPerformance extends Server {
         }
         System.out.println("Supported Perfomance Data Types - "+((AndroidDriver)driver).getSupportedPerformanceDataTypes());
         // 1. Memory info
-        List<List<Object>> list = ((AndroidDriver) driver).getPerformanceData("com.google.android.apps.photos","memoryinfo",10);
+        Map<String,String> data = getPerformanceData(packageName,"memoryinfo",10);
+        System.out.println(data.toString());
+    }
+
+    public Map<String,String> getPerformanceData(String packageName,String perfomanceType,int time){
+        List<List<Object>> listData = ((AndroidDriver)driver).getPerformanceData(packageName,perfomanceType,time);
         Map<String,String> values = new HashMap<>();
-        for(int i=0;i<list.get(0).size();i++){
-            if(list.get(1).get(i)!=null) {
-                values.put((String)list.get(0).get(i),(String)list.get(1).get(i));
+        for(int i=0;i< listData.get(0).size();i++){
+            if (listData.get(1).get(i)!=null){
+                values.put((String)listData.get(0).get(i),(String)listData.get(1).get(i));
             }
         }
-        System.out.println("And data is :"+list.toString());
-        System.out.println("Map value -"+values.toString());
-        //2. network nfo
-        List<List<Object>> networkinfo = ((AndroidDriver) driver).getPerformanceData("com.google.android.apps.photos","networkinfo",10);
-        System.out.println("And network data is -"+networkinfo);
-        //3. battery info
-        List<List<Object>> batteryinfo = ((AndroidDriver) driver).getPerformanceData("com.google.android.apps.photos","batteryinfo",10);
-        System.out.println("Battery info -"+batteryinfo);
-        //4. cpu info
-
+        return values;
     }
 
 }
