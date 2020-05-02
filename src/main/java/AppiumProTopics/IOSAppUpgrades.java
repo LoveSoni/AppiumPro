@@ -41,7 +41,7 @@ public class IOSAppUpgrades extends Server {
         driver.findElement(inputBox).sendKeys("new day");
         driver.findElement(saveBtn).click();
         String getSaveMsg = driver.findElement(savedMsg).getText();
-        System.out.println("Saved Messaeg is:"+getSaveMsg);
+        System.out.println("Saved Message is:"+getSaveMsg);
 
         HashMap<String, String> bundleArgs = new HashMap<>();
         bundleArgs.put("bundleId", BUNDLE_ID);
@@ -52,7 +52,12 @@ public class IOSAppUpgrades extends Server {
         driver.executeScript("mobile: installApp", installArgs);
 
         driver.executeScript("mobile: launchApp", bundleArgs);
-
+        driver = new AndroidDriver(new URL(getServerUrl()),capabilities);
+        driver.findElement(echoBox).click();
+        driver.findElement(inputBox).click();
+        driver.findElement(inputBox).click();
+        driver.findElement(inputBox).sendKeys("new day");
+        driver.findElement(saveBtn).click();
         getSaveMsg = driver.findElement(savedMsg).getText();
         System.out.println("After updating saved msg is:"+savedMsg);
     }
