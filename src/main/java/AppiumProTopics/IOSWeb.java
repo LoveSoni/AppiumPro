@@ -15,27 +15,27 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class IOSWeb extends Server {
-        private AppiumDriver driver;
+    private AppiumDriver driver;
 
-        @BeforeMethod
-        public void setUp(){
-            startServer();
-        }
+    @BeforeMethod
+    public void setUp() {
+        startServer();
+    }
 
-        @Test
-        public void launchSafariBrowser() throws MalformedURLException {
+    @Test
+    public void launchSafariBrowser() throws MalformedURLException {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME,"iPhone Xs Max");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION,"12.2");
-        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME,"ios");
-        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME,"xcuitest");
-        desiredCapabilities.setCapability(IOSMobileCapabilityType.BROWSER_NAME,"safari");
-        driver = new IOSDriver(new URL(getServerUrl()),desiredCapabilities);
+        desiredCapabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "iPhone Xs Max");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_VERSION, "12.2");
+        desiredCapabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, "ios");
+        desiredCapabilities.setCapability(MobileCapabilityType.AUTOMATION_NAME, "xcuitest");
+        desiredCapabilities.setCapability(IOSMobileCapabilityType.BROWSER_NAME, "safari");
+        driver = new IOSDriver(new URL(getServerUrl()), desiredCapabilities);
         driver.get("https://ww.google.com");
     }
 
     @AfterMethod
-    public void tearDown(){
-            stopServer();
+    public void tearDown() {
+        stopServer();
     }
 }
