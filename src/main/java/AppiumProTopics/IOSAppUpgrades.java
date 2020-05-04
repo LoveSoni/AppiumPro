@@ -22,6 +22,7 @@ public class IOSAppUpgrades extends Server {
     private By inputBox = By.xpath("//XCUIElementTypeTextField[@name=\"messageInput\"]");
     private By savedMsg = MobileBy.AccessibilityId("savedMessage");
     private By saveBtn = MobileBy.AccessibilityId("messageSaveBtn");
+
     @BeforeMethod
     public void setUp() {
         startServer();
@@ -34,14 +35,14 @@ public class IOSAppUpgrades extends Server {
         capabilities.setCapability("deviceName", "iPhone 8 Plus");
         capabilities.setCapability("platformVersion", "12.2");
         capabilities.setCapability("app", APP_V1_0_0);
-        driver = new AndroidDriver(new URL(getServerUrl()),capabilities);
+        driver = new AndroidDriver(new URL(getServerUrl()), capabilities);
         driver.findElement(echoBox).click();
         driver.findElement(inputBox).click();
         driver.findElement(inputBox).click();
         driver.findElement(inputBox).sendKeys("new day");
         driver.findElement(saveBtn).click();
         String getSaveMsg = driver.findElement(savedMsg).getText();
-        System.out.println("Saved Message is:"+getSaveMsg);
+        System.out.println("Saved Message is:" + getSaveMsg);
 
         HashMap<String, String> bundleArgs = new HashMap<>();
         bundleArgs.put("bundleId", BUNDLE_ID);
@@ -52,13 +53,13 @@ public class IOSAppUpgrades extends Server {
         driver.executeScript("mobile: installApp", installArgs);
 
         driver.executeScript("mobile: launchApp", bundleArgs);
-        driver = new AndroidDriver(new URL(getServerUrl()),capabilities);
+        driver = new AndroidDriver(new URL(getServerUrl()), capabilities);
         driver.findElement(echoBox).click();
         driver.findElement(inputBox).click();
         driver.findElement(inputBox).click();
         driver.findElement(inputBox).sendKeys("new day");
         driver.findElement(saveBtn).click();
         getSaveMsg = driver.findElement(savedMsg).getText();
-        System.out.println("After updating saved msg is:"+savedMsg);
+        System.out.println("After updating saved msg is:" + savedMsg);
     }
 }
