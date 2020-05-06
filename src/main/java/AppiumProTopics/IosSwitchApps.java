@@ -4,6 +4,7 @@ import AppiumServer.Server;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -38,5 +39,10 @@ public class IosSwitchApps extends Server {
         driver.executeScript("mobile: launchApp", args);
         driver.executeScript("mobile: activateApp",theAppBundleId);
         driver.executeScript("mobile: activateApp",args);
+    }
+
+    @AfterMethod
+    public void stop(){
+        stopServer();
     }
 }
