@@ -23,7 +23,7 @@ public class IosSwitchApps extends Server {
     }
 
     @Test
-    public void appUpgrade() throws MalformedURLException {
+    public void switchApp() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("platformName", "iOS");
         capabilities.setCapability("deviceName", "iPhone 8 Plus");
