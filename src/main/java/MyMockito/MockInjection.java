@@ -27,6 +27,8 @@ public class MockInjection {
         System.out.println(mockList.get(0));
         Mockito.when(mockList.size()).thenReturn(1);
         System.out.println(mockList.size());
+
+        System.out.print(mockStudent.getNameList().get(0));
     }
 }
 
