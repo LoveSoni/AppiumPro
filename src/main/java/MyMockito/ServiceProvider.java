@@ -1,4 +1,4 @@
-package Mockito;
+package MyMockito;
 
 public class ServiceProvider {
 
