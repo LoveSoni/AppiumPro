@@ -37,7 +37,6 @@ public class ExecuteShellCommand extends Server {
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }
-
         Map<String,Object> command = ImmutableMap.of("command","pm list packages");
         String output = (String)appiumDriver.executeScript("mobile: shell",command);
         System.out.println("--output is -"+output);
